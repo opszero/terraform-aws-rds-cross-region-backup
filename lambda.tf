@@ -62,3 +62,23 @@ resource "aws_lambda_function" "rds_cross_region_backup" {
     }
   }
 }
+
+resource "aws_cloudwatch_event_rule" "every_five_days" {
+    name = "every-five-days"
+    description = "Fires every five days"
+    schedule_expression = "rate(5 days)"
+}
+
+resource "aws_cloudwatch_event_target" "rds_cross_region_backup" {
+    rule = aws_cloudwatch_event_rule.every_five_days.name
+    target_id = "rds_cross_region_backup"
+    arn = aws_lambda_function.rds_cross_region_backup.arn
+}
+
+resource "aws_lambda_permission" "allow_cloudwatch_to_call_rds_cross_region_backup" {
+    statement_id = "AllowExecutionFromCloudWatch"
+    action = "lambda:InvokeFunction"
+    function_name = aws_lambda_function.rds_cross_region_backup.function_name
+    principal = "events.amazonaws.com"
+    source_arn = aws_cloudwatch_event_rule.every_five_days.arn
+}
