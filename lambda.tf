@@ -48,7 +48,7 @@ resource "aws_lambda_function" "rds_cross_region_backup" {
   filename      = "${path.module}/app.py"
   function_name = "RDSCrossRegionBackup-${var.source_region}-${var.target_region}-${join("-", var.instances)}"
   role          = aws_iam_role.lambda_role.arn
-  handler       = "index.lambda_handler"
+  handler       = "app.handler"
   runtime       = "python3.9"
   depends_on    = [aws_iam_role_policy_attachment.attach_iam_policy_to_iam_role]
 
