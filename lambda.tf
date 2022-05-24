@@ -54,11 +54,11 @@ resource "aws_lambda_function" "rds_cross_region_backup" {
 
   environment {
     variables = {
-      SOURCE_REGION = var.source_region,
-      TARGET_REGION = var.target_region,
-      INSTANCES     = var.instances,
-      ACCOUNT       = var.account
-
+      SOURCE_REGION     = var.source_region,
+      TARGET_REGION     = var.target_region,
+      INSTANCES         = var.instances,
+      ACCOUNT           = var.account,
+      TARGET_KMS_KEY_ID = var.kms_key_id
     }
   }
 }
