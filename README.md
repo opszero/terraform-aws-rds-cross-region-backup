@@ -30,8 +30,8 @@ terraform destroy -auto-approve
 | <a name="input_account"></a> [account](#input\_account) | AWS Account ID | `any` | n/a | yes |
 | <a name="input_instances"></a> [instances](#input\_instances) | List of RDS instances | `any` | n/a | yes |
 | <a name="input_kms_key_id"></a> [kms\_key\_id](#input\_kms\_key\_id) | The ID of KMS key | `any` | n/a | yes |
-| <a name="input_source_region"></a> [source\_region](#input\_source\_region) | The AWS region of the RDS instance | `any` | n/a | yes |
-| <a name="input_target_region"></a> [target\_region](#input\_target\_region) | The AWS region to copy RDS backups | `any` | n/a | yes |
+| <a name="input_source_region"></a> [source\_region](#input\_source\_region) | The AWS region where the source RDS instance exists | `any` | n/a | yes |
+| <a name="input_target_region"></a> [target\_region](#input\_target\_region) | The AWS region where you want to copy RDS backups | `any` | n/a | yes |
 ## Resources
 
 | Name | Type |
